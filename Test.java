@@ -1,17 +1,26 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
 public class Test 
 {
-    public static void main(String[] args)
+    public static void main(String args[]) 
     {
-        Sach book1 = new Sach("A01","Hat giong tam hon","Abram",2022,3);
-        book1.hienThiThongTin();
-        Sach book2 = new Sach("Cuoc song huu han","Jack Phitton",2023);
-        book2.hienThiThongTin();
-        Sach book3 = new Sach();
-        book3.setmaSach("A02");
-        book3.settieuDe("Ghi chep phap y");
-        book3.settacGia("Luu Hieu Huy");
-        book3.setnamXuatBan(2020);
-        book3.setsoLuong(12);
-        book3.hienThiThongTin();
+        Sach Cuon1 = new Sach("B0001","Dao giau vang","Robert Louis Stevenson",1883,7);
+        Cuon1.hienThiThongTin();
+        Sach Cuon2 = new Sach("B0002","De men phieu luu ki","To Hoai");
+        Cuon2.hienThiThongTin();
+        Sach Cuon3 = new Sach();
+        Cuon3.setMaSach("B0003");
+        Cuon3.setTieuDe("Tay Du Ki");
+        Cuon3.setTacGia("Ngo Thua An");
+        Cuon3.setNamXuatBan(1590);
+        Cuon3.setSoLuong(10);
+        Cuon3.hienThiThongTin();
     }
 }
