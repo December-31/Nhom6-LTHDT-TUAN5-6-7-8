@@ -45,8 +45,11 @@ public class Test
         QL.XoaSach("B0005");
         
         QL.HienThiDS();
-                
+        
+        System.out.println("Cap nhap thong tin sach co ma B0004: ");        
         QL.CapNhapSach("B0004", "Nguyen Van Huy", "Giai Phau Nguoi", 2);
+        Cuon4.hienThiThongTin();
+        QL.HienThiDS();
         
         System.out.print("Nhap ma sach can tim: ");
         String STimKiem = sc.nextLine();
