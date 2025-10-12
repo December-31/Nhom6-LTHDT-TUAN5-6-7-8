@@ -42,7 +42,7 @@ public class QuanLySach
         {
             if (DS[i].getMaSach().equals(MaSach)) 
             {
-                DS[i].setTieuDe(TacGia);
+                DS[i].setTacGia(TacGia);
                 DS[i].setTieuDe(TieuDe);
                 DS[i].setSoLuong(SoLuong);
             }
