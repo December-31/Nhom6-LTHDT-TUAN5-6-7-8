@@ -1,18 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
-public class SachGiaoTrinh extends Sach {
-
-    private String monHoc;
-    private String capDo;
-
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, String monHoc, String capDo, int namXuatBan, int soLuong) {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong);
-        this.monHoc = monHoc;
-        this.capDo = capDo;
+/**
+ *
+ * @author ACER
+ */
+public class SachGiaoTrinh extends Sach
+{
+    private String MonHoc, CapDo;
+    public SachGiaoTrinh() {super();};
+    public SachGiaoTrinh(String MaSach, String TieuDe, String MonHoc, String CapDo, String TacGia, int NamXuatBan, int SoLuong)
+    {
+        super(MaSach, TieuDe, TacGia, NamXuatBan, SoLuong);
+        this.MonHoc=MonHoc;
+        this.CapDo=CapDo;
     }
-
     @Override
-    public String toString() {
-        return super.toString() + "\nMôn học: " + monHoc + "\nCấp độ: " + capDo;
+    public String toString()
+    {
+        return super.toString() + "| Mon hoc: " + MonHoc + "| Cap do: " + CapDo;
     }
-
 }

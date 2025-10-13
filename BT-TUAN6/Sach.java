@@ -1,72 +1,88 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 
-public class Sach {
-
-    protected String maSach;
-    protected String tieuDe;
-    protected String tacGia;
-    protected int namXuatBan;
-    protected int soLuong;
-
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong) {
-        this.maSach = maSach;
-        this.tieuDe = tieuDe;
-        this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
+/**
+ *
+ * @author ACER
+ */
+public class Sach
+{
+    protected String MaSach, TieuDe, TacGia;
+    protected int NamXuatBan, SoLuong;   
+    public Sach(){}
+    public Sach(String MaSach, String TieuDe, String TacGia, int NamXuatBan, int SoLuong)
+    {
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
+        this.NamXuatBan=NamXuatBan;
+        this.SoLuong=SoLuong;
     }
-
-    public Sach(String tieuDe, String tacGia, int namXuatBan) {
-        this.tieuDe = tieuDe;
-        this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
+    public Sach(String MaSach, String TieuDe, String TacGia)
+    {
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
     }
-
-    public Sach() {
+    public Sach(Sach book)
+    {
+        this.MaSach=book.MaSach;
+        this.TieuDe=book.TieuDe;
     }
-
-    public void setmaSach(String maSach) {
-        this.maSach = maSach;
+    public void setMaSach(String MaSach)
+    {
+        this.MaSach=MaSach;
     }
-
-    public void settieuDe(String tieuDe) {
-        this.tieuDe = tieuDe;
+    public String getMaSach() 
+    {
+        return MaSach;
     }
-
-    public void settacGia(String tacGia) {
-        this.tacGia = tacGia;
+    public void setTieuDe(String TieuDe) 
+    {
+        this.TieuDe=TieuDe;
     }
-
-    public void setnamXuatBan(int namXuatBan) {
-        this.namXuatBan = namXuatBan;
+    public String getTieuDe() 
+    {
+        return TieuDe;
     }
-
-    public void setsoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setTacGia(String TacGia) 
+    {
+        this.TacGia=TacGia;
     }
-
-    public String getmaSach() {
-        return this.maSach;
+    public String getTacGia() 
+    {
+        return TacGia;
     }
-
-    public String gettieuDe() {
-        return this.tieuDe;
+    public void setNamXuatBan(int NamXuatBan) 
+    {
+        this.NamXuatBan=NamXuatBan;
     }
-
-    public String gettacGia() {
-        return this.tacGia;
+    public int getNamXuatBan() 
+    {
+        return NamXuatBan;
     }
-
-    public int namXuatBan() {
-        return this.namXuatBan;
+    public void setSoLuong(int SoLuong) 
+    {
+        this.SoLuong=SoLuong;
     }
-
-    public int soLuong() {
-        return this.soLuong;
+    public int getSoLuong() 
+    {
+        return SoLuong;
     }
-
+    public void hienThiThongTin() 
+    {
+        System.out.println("Ma sach: "+ MaSach);
+        System.out.println("Tieu de: "+ TieuDe);
+        System.out.println("Tac gia: "+ TacGia);
+        System.out.println("Nam xuat ban: "+ NamXuatBan);
+        System.out.println("So luong: "+ SoLuong);
+        System.out.println("----------------------------");
+    }
     @Override
-    public String toString() {
-        return "\nMã sách: " + maSach + "\nTiêu đề: " + tieuDe + "\nTác giả: " + tacGia + "\nNăm xuất bản: " + namXuatBan + "\nSố lượng: " + soLuong;
-
+    public String toString()
+    {
+        return "Ma sach: "+ MaSach +"| Tieu de: "+ TieuDe+"| Tac gia: "+ TacGia +"| Nam xuat ban: "+ NamXuatBan +"| So luong: "+ SoLuong;
     }
 }
