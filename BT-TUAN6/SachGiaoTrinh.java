@@ -1,32 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
 public class SachGiaoTrinh extends Sach
 {
-    private String monHoc;
-    private String capDo;
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong,String monHoc, String capDo) 
+    private String MonHoc, CapDo;
+    public SachGiaoTrinh() {super();};
+    public SachGiaoTrinh(String MaSach, String TieuDe, String MonHoc, String CapDo, String TacGia, int NamXuatBan, int SoLuong)
     {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong);
-        this.monHoc = monHoc;
-        this.capDo = capDo;
-    }
-    public String getMonHoc() 
-    {
-        return monHoc;
-    }
-    public void setMonHoc(String monHoc) 
-    {
-        this.monHoc = monHoc;
-    }
-    public String getCapDo() 
-    {
-        return capDo;
-    }
-    public void setCapDo(String capDo) 
-    {
-        this.capDo = capDo;
+        super(MaSach, TieuDe, TacGia, NamXuatBan, SoLuong);
+        this.MonHoc=MonHoc;
+        this.CapDo=CapDo;
     }
     @Override
-    public String toString() 
+    public String toString()
     {
-        return "Sach giao trinh: "+super.toString()+", Mon hoc:"+monHoc+", Cap do:"+capDo;
+        return super.toString() + "| Mon hoc: " + MonHoc + "| Cap do: " + CapDo;
     }
 }
