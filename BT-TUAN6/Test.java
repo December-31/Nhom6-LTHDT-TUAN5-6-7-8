@@ -2,41 +2,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BT_TUAN5;
-
-import static javax.swing.text.html.HTML.Attribute.N;
 
 /**
  *
- * @author LENOVO
+ * @author ACER
  */
-public class Test {
-    public static void main(String[] args) {
-        QuanLySach ql = new QuanLySach();
+import java.util.Scanner;
+public class Test 
+{
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String args[]) 
+    {
+        QuanLySach QL = new QuanLySach();
+
+        Sach Cuon1 = new Sach("B0001","Dao giau vang","Robert Louis Stevenson",1883,7);
+        Cuon1.hienThiThongTin();
+        QL.ThemSach(Cuon1);
         
-        SachGiaoTrinh gt1 = new SachGiaoTrinh("GT01", "Lap trinh Java", "Nguyen Van A", 2022, 10, "Dai hoc", "CNTT");
-        SachGiaoTrinh gt2 = new SachGiaoTrinh("GT02", "Toan cao cap", "Le Thi B", 2021, 5, "Dai hoc", "Toan hoc");
+        Sach Cuon2 = new Sach("B0002","De men phieu luu ki","To Hoai");
+        Cuon2.hienThiThongTin();
+        QL.ThemSach(Cuon2);
+        
+        Sach Cuon3 = new Sach();
+        Cuon3.setMaSach("B0003");
+        Cuon3.setTieuDe("Tay Du Ki");
+        Cuon3.setTacGia("Ngo Thua An");
+        Cuon3.setNamXuatBan(1590);
+        Cuon3.setSoLuong(10);
+        Cuon3.hienThiThongTin();
+        QL.ThemSach(Cuon3);
+        
+        Sach Cuon4 = new SachGiaoTrinh("B0004", "Giai Phau", "Y", "Dai Hoc", "Dai hoc Y Ha Noi", 2022, 1);
+        Cuon4.hienThiThongTin();
+        QL.ThemSach(Cuon4);
+        
+        Sach Cuon5 = new SachTieuThuyet("B0005", "Harry Potter", "Ky ao", true, "J. K. Rowling", 1997, 7);
+        Cuon5.hienThiThongTin();
+        QL.ThemSach(Cuon5);
+        
+        QL.HienThiDS();
+        
+        QL.XoaSach("B0005");
+        
+        QL.HienThiDS();
+        
+        System.out.println("Cap nhap thong tin sach co ma B0004: ");        
+        QL.CapNhapSach("B0004", "Nguyen Van Huy", "Giai Phau Nguoi", 2);
+        Cuon4.hienThiThongTin();
+        QL.HienThiDS();
+        
+        System.out.print("Nhap ma sach can tim: ");
+        String STimKiem = sc.nextLine();
 
-        SachTieuThuyet tt1 = new SachTieuThuyet("TT01", "harry potter", "j.r. rowling", 1997, 20, "fantasy", true);
-        SachTieuThuyet tt2 = new SachTieuThuyet("TT02", "doraemon", "Fujiko F. Fujio", 1980, 15, "thieu nhi", true);
-
-        ql.themSach(gt1);
-        ql.themSach(gt2);
-        ql.themSach(tt1);
-        ql.themSach(tt2);
-
-        System.out.println("=== Danh sach ban dau ===");
-        ql.hienThiTatCa();
-
-        System.out.println("\n=== Tem sach ma TT01 ===");
-        System.out.println(ql.timSachTheoMa("TT01"));
-
-        System.out.println("\n=== Cap nhat tieu de GT02 ===");
-        ql.capNhatSach("GT02", "Toan cao cap 1",16);
-        ql.hienThiTatCa();
-
-        System.out.println("\n=== Xoa sach ma TT02 ===");
-        ql.xoaSach("TT02");
-        ql.hienThiTatCa();
+        Sach x = QL.TimKiem(STimKiem);
+        QL.KQTimKiem(x);
     }
+
+
 }
