@@ -1,61 +1,82 @@
-import java.util.ArrayList;
-import java.util.List;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
 public class QuanLySach 
 {
-    private List<Sach> danhSach = new ArrayList<>();
-    public void themSach(Sach s) 
+    private Sach[] DS = new Sach[100];
+    private int n;
+    public QuanLySach(){}
+    
+    public void ThemSach(Sach sach)
     {
-        danhSach.add(s);
+            n++;
+            DS[n] = sach;
+            System.out.println("Da them ma sach: " + sach.MaSach);
+            System.out.println("----------------------------");
     }
-    public boolean xoaSach(String ma) 
+    
+    public void XoaSach(String MaSach)  
     {
-        for (int i = 0; i < danhSach.size(); i++) 
+        for (int i=1; i<=n; i++) 
         {
-            if (danhSach.get(i).getmaSach().equalsIgnoreCase(ma)) 
+            if (DS[i].getMaSach().equals(MaSach)) 
             {
-            danhSach.remove(i);
-            return true;
+                for (int j=i; j<n; j++)
+                    DS[j] = DS[j+1];
+                n--;
             }
         }
-        return false;
+        System.out.println("Da xoa ma sach: " + MaSach);
+        System.out.println("----------------------------");
     }
-    public boolean capNhatSach(String ma, String tenMoi, String tacGiaMoi, int nam, int sl) 
+    
+    public void CapNhapSach(String MaSach, String TacGia, String TieuDe, int SoLuong, double GiaCoBan) 
     {
-        for (Sach s : danhSach) 
+        for (int i=1; i<=n; i++) 
         {
-            if (s.getmaSach().equalsIgnoreCase(ma)) 
+            if (DS[i].getMaSach().equals(MaSach)) 
             {
-                s.settieuDe(tenMoi);
-                s.settacGia(tacGiaMoi);
-                s.setnamXuatBan(nam);
-                s.setsoLuong(sl);
-                return true;
+                DS[i].setTacGia(TacGia);
+                DS[i].setTieuDe(TieuDe);
+                DS[i].setSoLuong(SoLuong);
+                DS[i].setGiaCoBan(GiaCoBan);
             }
         }
-        return false;
     }
-    public Sach timKiemTheoMa(String ma) 
+    
+    public Sach TimKiem(String MaSach) 
     {
-        for(Sach sach : danhSach)
+        for (int i=1; i<=n; i++) 
         {
-            if (sach.getmaSach().equalsIgnoreCase(ma))
-            {
-                return sach;
-            }
+            if (DS[i].getMaSach().equals(MaSach)) 
+                return DS[i];
         }
         return null;
     }
-    public void hienThiDanhSach() 
+    public void KQTimKiem(Sach KQ)
     {
-        if (danhSach.isEmpty()) 
+        if (KQ != null) 
         {
-            System.out.println("Danh sách rỗng!");
-            return;
-        }
-        System.out.println("\n=== DANH SÁCH SÁCH ===");
-        for (Sach s : danhSach) 
+            System.out.println("Da tim thay sach");
+            KQ.hienThiThongTin();
+        } 
+        else
+            System.out.println("Khong co trong danh sach"); 
+    }
+    
+    public void HienThiDS() 
+    {
+        System.out.println("Hien thi danh sach:");
+        for (int i=1; i<=n; i++) 
         {
-            System.out.println(s.toString());
+            System.out.println(DS[i].toString());
+            System.out.println("-----------------------------------");
         }
     }
 }
