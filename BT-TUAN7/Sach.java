@@ -1,75 +1,101 @@
-public abstract class Sach 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
+public abstract class Sach
 {
-    protected String maSach;
-    protected String tieuDe;
-    protected String tacGia;
-    protected int namXuatBan;
-    protected int soLuong;
-    protected double giaCoBan;
-    public Sach(String maSach,String tieuDe,String tacGia,int namXuatBan,int soLuong,double giaCoBan)
+    protected String MaSach, TieuDe, TacGia;
+    protected int NamXuatBan, SoLuong;
+    protected double GiaCoBan;
+    public Sach(){}
+    public Sach(String MaSach, String TieuDe, String TacGia, int NamXuatBan, double GiaCoBan, int SoLuong)
     {
-        this.maSach=maSach;
-        this.tieuDe=tieuDe;
-        this.tacGia=tacGia;
-        this.namXuatBan=namXuatBan;
-        this.soLuong=soLuong;
-        this.giaCoBan=giaCoBan;
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
+        this.NamXuatBan=NamXuatBan;
+        this.SoLuong=SoLuong;
+        this.GiaCoBan=GiaCoBan;
     }
-    public Sach()
+    public Sach(String MaSach, String TieuDe, String TacGia)
     {
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
     }
-    public void setmaSach(String maSach)
+    public Sach(Sach book)
     {
-        this.maSach=maSach;
+        this.MaSach=book.MaSach;
+        this.TieuDe=book.TieuDe;
     }
-    public void settieuDe(String tieuDe)
+    public void setMaSach(String MaSach)
     {
-        this.tieuDe=tieuDe;
+        this.MaSach=MaSach;
     }
-    public void settacGia(String tacGia)
+    public String getMaSach() 
     {
-        this.tacGia=tacGia;
+        return MaSach;
     }
-    public void setnamXuatBan(int namXuatBan)
+    public void setTieuDe(String TieuDe) 
     {
-        this.namXuatBan=namXuatBan;
+        this.TieuDe=TieuDe;
     }
-    public void setsoLuong(int soLuong)
+    public String getTieuDe() 
     {
-        this.soLuong=soLuong;
+        return TieuDe;
     }
-    public void setgiaCoBan(double giaCoBan)
+    public void setTacGia(String TacGia) 
     {
-        this.giaCoBan=giaCoBan;
+        this.TacGia=TacGia;
     }
-    public String getmaSach()
+    public String getTacGia() 
     {
-        return this.maSach;
+        return TacGia;
     }
-    public String gettieuDe()
+    public void setNamXuatBan(int NamXuatBan) 
     {
-        return this.tieuDe;
+        this.NamXuatBan=NamXuatBan;
     }
-    public String gettacGia()
+    public int getNamXuatBan() 
     {
-        return this.tacGia;
+        return NamXuatBan;
     }
-    public int getnamXuatBan()
+    public void setSoLuong(int SoLuong) 
     {
-        return this.namXuatBan;
+        this.SoLuong=SoLuong;
     }
-    public int getsoLuong()
+    public int getSoLuong() 
     {
-        return this.soLuong;
+        return SoLuong;
     }
-    public double getgiaCoBan()
+    public void setGiaCoBan(double GiaCoBan)
     {
-        return this.giaCoBan;
-    } 
-    @Override
-    public String toString() 
+        this.GiaCoBan=GiaCoBan;
+    }
+    public double getGiaCoBan()
     {
-        return "Ma sach:"+maSach+", Tieu de:"+tieuDe+", Tac gia:"+tacGia+","+" Nam xuat ban:"+namXuatBan+", So luong:"+soLuong+", Gia co ban:"+giaCoBan;
+        return GiaCoBan;
     }
     public abstract double tinhGiaBan();
+    public void hienThiThongTin() 
+    {
+        System.out.println("Ma sach: "+ MaSach);
+        System.out.println("Tieu de: "+ TieuDe);
+        System.out.println("Tac gia: "+ TacGia);
+        System.out.println("Nam xuat ban: "+ NamXuatBan);
+        System.out.println("So luong: "+ SoLuong);
+        System.out.println("Gia co ban: "+ GiaCoBan);
+        System.out.println("Gia ban ra: "+tinhGiaBan());
+        System.out.println("----------------------------");
+    }
+    @Override
+    public String toString()
+    {
+        return "Ma sach: "+ MaSach +"| Tieu de: "+ TieuDe+"| Tac gia: "+ TacGia +"| Nam xuat ban: "+ NamXuatBan +"| Gia co ban: "+ GiaCoBan +"| So luong: "+ SoLuong;
+    }
 }

@@ -1,93 +1,82 @@
-import java.util.ArrayList;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
 public class QuanLySach 
 {
-    private final ArrayList<Sach> danhSach;
-    public QuanLySach() 
+    private Sach[] DS = new Sach[100];
+    private int n;
+    public QuanLySach(){}
+    
+    public void ThemSach(Sach sach)
     {
-        this.danhSach = new ArrayList<>();
+            n++;
+            DS[n] = sach;
+            System.out.println("Da them ma sach: " + sach.MaSach);
+            System.out.println("----------------------------");
     }
-    public Sach timKiemSach(String ma) 
+    
+    public void XoaSach(String MaSach)  
     {
-        for (Sach sach:danhSach) 
-            if (sach.getmaSach().equalsIgnoreCase(ma)) 
-                return sach;
+        for (int i=1; i<=n; i++) 
+        {
+            if (DS[i].getMaSach().equals(MaSach)) 
+            {
+                for (int j=i; j<n; j++)
+                    DS[j] = DS[j+1];
+                n--;
+            }
+        }
+        System.out.println("Da xoa ma sach: " + MaSach);
+        System.out.println("----------------------------");
+    }
+    
+    public void CapNhapSach(String MaSach, String TacGia, String TieuDe, int SoLuong, double GiaCoBan) 
+    {
+        for (int i=1; i<=n; i++) 
+        {
+            if (DS[i].getMaSach().equals(MaSach)) 
+            {
+                DS[i].setTacGia(TacGia);
+                DS[i].setTieuDe(TieuDe);
+                DS[i].setSoLuong(SoLuong);
+                DS[i].setGiaCoBan(GiaCoBan);
+            }
+        }
+    }
+    
+    public Sach TimKiem(String MaSach) 
+    {
+        for (int i=1; i<=n; i++) 
+        {
+            if (DS[i].getMaSach().equals(MaSach)) 
+                return DS[i];
+        }
         return null;
     }
-    public void kquaTimKiem(String ma)
+    public void KQTimKiem(Sach KQ)
     {
-        if (timKiemSach(ma)==null)
-            System.out.println("Khong tim thay ma sach "+ma+"");
-        else
+        if (KQ != null) 
         {
-            System.out.println("Tim thay ma sach "+ma+":");
-            System.out.println(timKiemSach(ma).toString());
-        }
-    }
-    public void themSach(Sach sach) 
-    {
-        if (timKiemSach(sach.getmaSach())!= null) 
-             System.out.println("Khong the them sach vi "+sach.getmaSach()+" da ton tai trong danh sach");
-        else
-        {
-            this.danhSach.add(sach);
-            System.out.println("Da them sach co ma:" + sach.getmaSach());
-        }
-    }
-    public void capNhat(String ma,Sach sachmoi)
-    {
-        Sach sachCapNhat=timKiemSach(ma);
-         if (sachCapNhat!=null)
-        {
-            sachCapNhat.setmaSach(sachmoi.getmaSach());
-            sachCapNhat.settieuDe(sachmoi.gettieuDe());
-            sachCapNhat.settacGia(sachmoi.gettacGia());
-            sachCapNhat.setnamXuatBan(sachmoi.getnamXuatBan());
-            sachCapNhat.setsoLuong(sachmoi.getsoLuong());
-            sachCapNhat.setgiaCoBan(sachmoi.getgiaCoBan());
-            if (sachCapNhat instanceof SachTieuThuyet && sachmoi instanceof SachTieuThuyet)
-            {
-                SachTieuThuyet s1=(SachTieuThuyet) sachCapNhat;
-                SachTieuThuyet s2=(SachTieuThuyet) sachmoi;
-                s1.setTheLoai(s2.getTheLoai());
-                s1.setLaSachSeries(s2.isLaSachSeries());
-            }
-            else 
-                if (sachCapNhat instanceof SachGiaoTrinh && sachmoi instanceof SachGiaoTrinh) 
-                {
-                    SachGiaoTrinh s1=(SachGiaoTrinh) sachCapNhat;
-                    SachGiaoTrinh s2=(SachGiaoTrinh) sachmoi;
-                    s1.setMonHoc(s2.getMonHoc());
-                    s1.setCapDo(s2.getCapDo());
-                }
-            System.out.println("Da cap nhat sach co ma "+ma);
-        }
-        else
-            System.out.println("Khong tim thay sach co ma "+ma+" de cap nhat");
-    }
-    public void xoaSach(String ma) 
-    {
-        Sach sachXoa = timKiemSach(ma);
-        if (sachXoa != null) 
-        {
-            danhSach.remove(sachXoa);
-            System.out.println("Da xoa sach co ma "+ma);
+            System.out.println("Da tim thay sach");
+            KQ.hienThiThongTin();
         } 
-        else 
-            System.out.println("Khong tim thay sach co ma "+ma+" de xoa");
-    }
-    public void xuatSach() 
-    {
-        if (danhSach.size()==0) 
-        {
-            System.out.println("Danh sach rong vui long them sach!");
-            System.out.println("--------------------------------------------------");
-        }
         else
+            System.out.println("Khong co trong danh sach"); 
+    }
+    
+    public void HienThiDS() 
+    {
+        System.out.println("Hien thi danh sach:");
+        for (int i=1; i<=n; i++) 
         {
-            System.out.println("---Danh sach hien co ("+danhSach.size()+" cuon)---");
-            for (int i=0;i<danhSach.size();i++)
-                System.out.println((i+1)+"."+danhSach.get(i).toString());
-            System.out.println("--------------------------------------------------");
+            System.out.println(DS[i].toString());
+            System.out.println("-----------------------------------");
         }
     }
 }
