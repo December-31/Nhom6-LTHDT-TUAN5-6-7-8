@@ -1,30 +1,47 @@
-package BT_TUAN5;
-public class SachGiaoTrinh extends Sach{
-    private String MonHoc;
-    private String CapDo;
-    public SachGiaoTrinh (String MaSach, String TieuDe, String TacGia, int NamXuatBan, int SoLuong,double giaCoBan, String CapDo, String MonHoc){
-        super(MaSach, TieuDe, TacGia, NamXuatBan, SoLuong, giaCoBan);
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
+public class SachGiaoTrinh extends Sach
+{
+    private String MonHoc, CapDo;
+    public SachGiaoTrinh() {super();};
+    public SachGiaoTrinh(String MaSach, String TieuDe, String MonHoc, String CapDo, String TacGia, int NamXuatBan, double GiaCoBan, int SoLuong)
+    {
+        super(MaSach, TieuDe, TacGia, NamXuatBan, GiaCoBan, SoLuong);
+        this.MonHoc=MonHoc;
         this.CapDo=CapDo;
-        this.MonHoc=MonHoc;
     }
-    public String getMonHoc(){
+    public void setMonHoc(String MonHoc) 
+    {
+        this.MonHoc = MonHoc;
+    }   
+    public String getMonHoc() 
+    {
         return MonHoc;
+    }   
+    public void setCapDo(String CapDo) 
+    {
+        this.CapDo = CapDo;
     }
-    public void SetMonHoc(String MonHoc){
-        this.MonHoc=MonHoc;
-    }
-    public String getCapDo(){
+    public String getCapDo() 
+    {
         return CapDo;
     }
-    public void setCapDo(String CapDo){
-        this.CapDo=CapDo;
+    
+    @Override
+    public double tinhGiaBan()
+    {
+        return GiaCoBan+(2025-NamXuatBan)*5000;
     }
     @Override
-    public double GiaBan(){
-        return this.giaCoBan+((2025-this.NamXuatBan)*5000);
-    }
-    @Override
-    public String toString(){
-        return super.toString()+ " | Cap do: " + CapDo+ " | Mon hoc: " + MonHoc  + " | Gia ban: " + this.GiaBan();
+    public String toString()
+    {
+        return super.toString() + "| Mon hoc: " + MonHoc + "| Cap do: " + CapDo +"| Gia ban: "+ tinhGiaBan();
     }
 }

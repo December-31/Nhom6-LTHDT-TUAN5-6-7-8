@@ -1,30 +1,56 @@
-package BT_TUAN5;
-public class SachTieuThuyet extends Sach {
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
+public class SachTieuThuyet extends Sach
+{
     private String TheLoai;
     private Boolean LaSachSeries;
-    public SachTieuThuyet (String MaSach, String TieuDe, String TacGia, int NamXuatBan, int SoLuong, double giaCoBan, String TheLoai, Boolean LaSachSeries){
-        super(MaSach, TieuDe, TacGia, NamXuatBan, SoLuong, giaCoBan);
+    public SachTieuThuyet() {super();};
+    public SachTieuThuyet(String MaSach, String TieuDe, String TheLoai, Boolean LaSachSeries, String TacGia, int NamXuatBan, double GiaCoBan, int SoLuong)
+    {
+        super(MaSach, TieuDe, TacGia, NamXuatBan, GiaCoBan, SoLuong);
         this.TheLoai=TheLoai;
         this.LaSachSeries=LaSachSeries;
     }
-    public String getTheLoai(){
+
+    public void setTheLoai(String TheLoai) 
+    {
+        this.TheLoai = TheLoai;
+    }
+    
+    public String getTheLoai() 
+    {
         return TheLoai;
     }
-    public void setTheLoai(String TheLoai){
-        this.TheLoai=TheLoai;
+
+    public void setLaSachSeries(Boolean LaSachSeries) 
+    {
+        this.LaSachSeries = LaSachSeries;
     }
-    public Boolean getLaSachSeries(){
+    
+    public Boolean getLaSachSeries() 
+    {
         return LaSachSeries;
     }
-    public void setLaSachSeries(Boolean LaSachSeries){
-        this.LaSachSeries=LaSachSeries;
-    }
+    
     @Override
-    public double GiaBan(){
-        return giaCoBan + (LaSachSeries ? 15000:0);
+    public double tinhGiaBan()
+    {
+        if (LaSachSeries==true)
+            return GiaCoBan+15000;
+        else
+            return GiaCoBan;
     }
+    
     @Override
-    public String toString(){
-        return super.toString()+" | The loai: " + TheLoai + " | La sach series: " + LaSachSeries + " | Gia ban: " + this.GiaBan();
+    public String toString()
+    {
+        return super.toString() + "| The loai: " + TheLoai + "| La sach serires? " +LaSachSeries +"| Gia ban: "+ tinhGiaBan();
     }
 }

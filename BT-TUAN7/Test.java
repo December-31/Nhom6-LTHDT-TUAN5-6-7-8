@@ -1,110 +1,65 @@
-package BT_TUAN5;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ACER
+ */
 import java.util.Scanner;
-public class Test {
-    public static void main(String[] args) {
-        QuanLySach ql = new QuanLySach();
-        Scanner sc=new Scanner(System.in);
-        SachGiaoTrinh gt1 = new SachGiaoTrinh("GT01", "Lap trinh Java", "Nguyen Van A", 2022, 10, 10000, "Dai hoc", "CNTT");
-        SachGiaoTrinh gt2 = new SachGiaoTrinh("GT02", "Toan cao cap", "Le Thi B", 2021, 5, 14000, "Dai hoc", "Toan hoc");
-        SachTieuThuyet tt1 = new SachTieuThuyet("TT01", "harry potter", "j.r. rowling", 1997, 20, 20500,  "fantasy", true);
-        SachTieuThuyet tt2 = new SachTieuThuyet("TT02", "doraemon", "Fujiko F. Fujio", 1980, 15, 19000, "thieu nhi", true);
-        ql.themSach(gt1);
-        ql.themSach(gt2);
-        ql.themSach(tt1);
-        ql.themSach(tt2);
-        System.out.println("=== Danh sach ban dau ===");
-        ql.hienThiTatCa();
-        int a,i=2;
-        do{
-        System.out.println("\n----------------------------------");
-        System.out.println("1. Tim sach.    2. Cap nhat Sach.\n3. Xoa sach.    4.Them Sach.\n0. Thoat.");
-        System.out.print("Nhap tuy chon: ");
-        a=sc.nextInt();
-        sc.nextLine();
-        switch(a)
-        {
-            case 1:
-                System.out.print("Nhap ma sach can tim: ");
-                String matim=sc.nextLine(); 
-                System.out.print(ql.timSachTheoMa(matim));
-                break;
-            case 2:
-                System.out.print("Nhap ma sach can cap nhat: ");
-                String masc=sc.nextLine();
-                if(ql.timSachTheoMa(masc)==null)
-                    System.out.print("Nhap sai ma sach ");
-                else{
-                    System.out.print("Cap nhat ma sach: ");
-                    String ma=sc.nextLine();
-                    System.out.print("Cap nhat tieu de sach: ");
-                    String ts=sc.nextLine();
-                    System.out.print("Cap nhat tac gia: ");
-                    String tg=sc.nextLine();
-                    System.out.print("Cap nhat so luong: ");
-                    int sl=sc.nextInt();
-                    System.out.print("Cap nhat gia co ban: ");
-                    double gcb=sc.nextDouble();
-                    sc.nextLine();
-                    ql.capNhatSach(masc,ma, tg,ts,sl,gcb);   
-                    System.out.println("=== Danh sach sau cap nhat ");
-                    ql.hienThiTatCa();
-                }
-                break;
-            case 3:
-                System.out.print("Nhap ma sach can xoa: ");
-                String max=sc.nextLine();
-                if(ql.timSachTheoMa(max)==null)
-                    System.out.print("Nhap sai ma sach ");
-                else{
-                ql.xoaSach(max);
-                System.out.println("=== Danh sach sau khi xoa ");
-                ql.hienThiTatCa();
-                }
-                break;
-            case 4:
-                System.out.print("1.Sach giao trinh     2. Sach tieu thuyet. \nNhap loai sach: ");
-                int c=sc.nextInt();     
-                sc.nextLine();
-                System.out.print("Nhap ma sach: ");
-                String ma=sc.nextLine();
-                System.out.print("Nhap tieu de sach: ");
-                String ts=sc.nextLine();
-                System.out.print("Nhap tac gia: ");
-                String tg=sc.nextLine();
-                System.out.print("Nhap nam xuat ban: ");
-                int nxb=sc.nextInt();
-                System.out.print("Nhap so luong: ");
-                int sl=sc.nextInt();
-                System.out.print("Nhap gia co ban: ");
-                double gcb=sc.nextDouble();
-                sc.nextLine();
-                switch(c){
-                    case 1:
-                       System.out.print("Nhap mon hoc: ");
-                       String mh=sc.nextLine();
-                       System.out.print("Nhap cap do: ");
-                       String cd=sc.nextLine(); 
-                       SachGiaoTrinh t1 = new SachGiaoTrinh(ma, ts, tg, nxb, sl, gcb, mh,cd);
-                       ql.themSach(t1); 
-                       System.out.println("=== Danh sach sau khi them ");
-                       ql.hienThiTatCa();
-                       break;
-                    case 2:
-                       System.out.print("Nhap the loai: ");
-                       String tl=sc.nextLine();
-                       System.out.print("la sach series (true/false): ");
-                       boolean sr=sc.nextBoolean();   
-                       SachTieuThuyet t2 = new SachTieuThuyet(ma, ts, tg, nxb, sl, gcb, tl,sr);
-                       ql.themSach(t2); 
-                       System.out.println("=== Danh sach sau khi them ");
-                       ql.hienThiTatCa();
-                       break;
-                    default:
-                        System.out.println("Lua chon khong hop le!");
-                }
-                default:
-                        System.out.println("Lua chon khong hop le!");
-        }
-        }while(a!=0);
+public class Test 
+{
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String args[]) 
+    {
+        QuanLySach QL = new QuanLySach();
+
+        Sach Cuon1 = new SachTieuThuyet("B0001","Dao giau vang","Phieu luu", false, "Robert Louis Stevenson",1883,17000,7);
+        Cuon1.hienThiThongTin();
+        QL.ThemSach(Cuon1);
+        
+        SachGiaoTrinh Cuon2 = new SachGiaoTrinh("B0002","Giai Tich","Chuyen nganh Toan","Dai hoc","Nguyen Dinh Huy", 2015,12000,3);
+        Cuon2.hienThiThongTin();
+        QL.ThemSach(Cuon2);
+        
+        SachTieuThuyet Cuon3 = new SachTieuThuyet();
+        Cuon3.setMaSach("B0003");
+        Cuon3.setTieuDe("Hat bui trong mua");
+        Cuon3.setTheLoai("Tinh cam lang man");
+        Cuon3.setLaSachSeries(false);
+        Cuon3.setTacGia("Petrichor");
+        Cuon3.setNamXuatBan(1773);
+        Cuon3.setGiaCoBan(50000);
+        Cuon3.setSoLuong(2);
+        Cuon3.hienThiThongTin();
+        QL.ThemSach(Cuon3);
+        
+        Sach Cuon4 = new SachGiaoTrinh("B0004", "Giai Phau", "Y", "Dai Hoc", "Dai hoc Y Ha Noi", 2022, 12000,1);
+        Cuon4.hienThiThongTin();
+        QL.ThemSach(Cuon4);
+        
+        Sach Cuon5 = new SachTieuThuyet("B0005", "Harry Potter", "Ky ao", true, "J. K. Rowling", 1997, 30000,7);
+        Cuon5.hienThiThongTin();
+        QL.ThemSach(Cuon5);
+        
+        QL.HienThiDS();
+        
+        System.out.println("Xoa ma sach co ma la: B0005");
+        QL.XoaSach("B0005");
+        QL.HienThiDS();
+        
+        System.out.println("Cap nhap thong tin sach co ma B0004: ");
+        QL.CapNhapSach("B0004", "Nguyen Van Huy", "Giai Phau Nguoi", 2, 17000);
+        Cuon4.hienThiThongTin();
+        QL.HienThiDS();
+        
+        System.out.print("Nhap ma sach can tim: ");
+        String STimKiem = sc.nextLine();
+
+        Sach x = QL.TimKiem(STimKiem);
+        QL.KQTimKiem(x);
     }
+
+
 }
