@@ -54,7 +54,11 @@ public class Test {
                         String ma=sc.nextLine();
                         if(ql.timSachTheoMa(ma)!=null)
                             System.out.print("Ma sach da co.");
-                        else{
+                        else
+                            if((c==1 && ql.timSachTheoMa(masc)instanceof SachTieuThuyet) ||(c==2 && ql.timSachTheoMa(masc)instanceof SachGiaoTrinh))
+                            System.out.println("Ma sach ban nhap khong dung voi lua cho cua ban");
+                        else
+                        {
                         System.out.print("Cap nhat tieu de sach: ");
                         String ts=sc.nextLine();
                         System.out.print("Cap nhat tac gia: ");
