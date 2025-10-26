@@ -1,87 +1,116 @@
-public abstract class Sach implements IGiaBan,IKiemKe
-{
-    protected String maSach;
-    protected String tieuDe;
-    protected String tacGia;
-    protected int namXuatBan;
-    protected int soLuong;
-    protected double giaCoBan;
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) 
-    {
-        this.maSach = maSach;
-        this.tieuDe = tieuDe;
-        this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
-        this.giaCoBan = giaCoBan;
-    }
-    public Sach() 
-    {
-    }
-    public void setmaSach(String maSach) 
-    {
-        this.maSach = maSach;
-    }
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 
-    public void settieuDe(String tieuDe) 
+/**
+ *
+ * @author ACER
+ */
+public abstract class Sach implements IGiaBan, IKiemKe
+{
+    protected String MaSach, TieuDe, TacGia, ViTri;
+    protected int NamXuatBan, SoLuong;
+    protected double GiaCoBan;
+    public Sach(){}
+    public Sach(String MaSach, String TieuDe, String TacGia, String ViTri, int NamXuatBan, double GiaCoBan, int SoLuong)
     {
-        this.tieuDe = tieuDe;
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
+        this.ViTri=ViTri;
+        this.NamXuatBan=NamXuatBan;
+        this.SoLuong=SoLuong;
+        this.GiaCoBan=GiaCoBan;
     }
-    public void settacGia(String tacGia) 
+    public Sach(String MaSach, String TieuDe, String TacGia, String ViTri)
     {
-        this.tacGia = tacGia;
+        this.MaSach=MaSach;
+        this.TieuDe=TieuDe;
+        this.TacGia=TacGia;
+        this.ViTri=ViTri;
     }
-    public void setnamXuatBan(int namXuatBan) 
+    public Sach(Sach book)
     {
-        this.namXuatBan = namXuatBan;
+        this.MaSach=book.MaSach;
+        this.TieuDe=book.TieuDe;
     }
-    public void setsoLuong(int soLuong) 
+    
+    public void setMaSach(String MaSach)
     {
-        this.soLuong = soLuong;
+        this.MaSach=MaSach;
     }
-    public void setgiaCoBan(double giaCoBan)
+    public String getMaSach() 
     {
-        this.giaCoBan = giaCoBan;
+        return MaSach;
     }
-    public String getmaSach() 
+    public void setTieuDe(String TieuDe) 
     {
-        return this.maSach;
+        this.TieuDe=TieuDe;
     }
-    public String gettieuDe() 
+    public String getTieuDe() 
     {
-        return this.tieuDe;
+        return TieuDe;
     }
-    public String gettacGia() 
+    public void setTacGia(String TacGia) 
     {
-        return this.tacGia;
+        this.TacGia=TacGia;
     }
-    public double getgiaCoBan()
+    public String getTacGia() 
     {
-        return this.giaCoBan;
+        return TacGia;
     }
-    public int getnamXuatBan()
+    public void setViTri(String ViTri) 
     {
-        return this.namXuatBan;
+        this.ViTri = ViTri;
     }
-    public int getsoLuong() 
+    public String getViTri() 
     {
-        return this.soLuong;
+        return ViTri;
     }
-    @Override
-    public String toString() 
+    public void setNamXuatBan(int NamXuatBan) 
     {
-        return "\nMa sach: " + maSach + "\nTieu de: " + tieuDe + "\nTác giả: " + tacGia + "\nNam xuat ban: " + namXuatBan + "\nSo luong: " + soLuong;
+        this.NamXuatBan=NamXuatBan;
     }
-    @Override
+    public int getNamXuatBan() 
+    {
+        return NamXuatBan;
+    }
+    public void setSoLuong(int SoLuong) 
+    {
+        this.SoLuong=SoLuong;
+    }
+    public int getSoLuong() 
+    {
+        return SoLuong;
+    }
+    public void setGiaCoBan(double GiaCoBan)
+    {
+        this.GiaCoBan=GiaCoBan;
+    }
+    public double getGiaCoBan()
+    {
+        return GiaCoBan;
+    }
     public abstract double tinhGiaBan();
-    @Override
-    public boolean kiemTraTonKho(int soLuongToiThieu)
+    public abstract boolean kiemTraTonKho(int soLuongToiThieu);
+    public abstract void capNhatViTri(String viTriMoi);
+    public void hienThiThongTin() 
     {
-        return soLuong>=soLuongToiThieu;
+        System.out.println("----------------------------");
+        System.out.println("Ma sach: "+ MaSach);
+        System.out.println("Tieu de: "+ TieuDe);
+        System.out.println("Tac gia: "+ TacGia);
+        System.out.println("Vi tri: "+ ViTri);
+        System.out.println("Nam xuat ban: "+ NamXuatBan);
+        System.out.println("So luong: "+ SoLuong);
+        System.out.println("Gia co ban: "+ GiaCoBan);
+        System.out.println("Gia ban ra: "+tinhGiaBan());
+        System.out.println("----------------------------");
     }
     @Override
-    public void capNhatViTri(String viTriMoi)
+    public String toString()
     {
-        System.out.println("Da chuyen sach "+tieuDe+" den khu vuc: "+viTriMoi);
+        return "Ma sach: "+ MaSach +"| Tieu de: "+ TieuDe+"| Tac gia: "+ TacGia +"| Vi tri: "+ViTri+"| Nam xuat ban: "+ NamXuatBan +"| Gia co ban: "+ GiaCoBan +"| So luong: "+ SoLuong;
     }
 }
