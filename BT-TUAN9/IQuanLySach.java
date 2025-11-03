@@ -1,11 +1,11 @@
+package BT;
 import java.util.ArrayList;
-public interface IQuanLySach 
-{
+public interface IQuanLySach {
     ArrayList<Sach> getdanhSach();
-    Sach themSach(Sach sach);
-    Sach timKiemSach(String maSach);
-    void kquaTimKiem(String maSach);
-    boolean xoaSach(String maSach);
-    Sach capNhat(String maSach, Sach sachMoi);
-    void hienThiDanhSach();
+    public void themSach(Sach s);
+    public void xoaSach(String maSach);
+    public Sach timSachTheoMa(String mat);
+    public Boolean capNhatSach(Sach s);
+    public void hienThiTatCa();
 }
+

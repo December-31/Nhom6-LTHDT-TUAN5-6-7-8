@@ -1,109 +1,109 @@
-public abstract class Sach implements IGiaBan,IKiemKe
-{
-    protected String maSach;
-    protected String tieuDe;
-    protected String tacGia;
-    protected int namXuatBan;
-    protected int soLuong;
-    protected String viTri;
-    protected double giaCoBan;
-    public Sach(String maSach,String tieuDe,String tacGia,int namXuatBan,int soLuong, String viTri,double giaCoBan)
+package BT;
+public abstract class Sach implements IGiaBan, IKiemKe
     {
-        this.maSach=maSach;
-        this.tieuDe=tieuDe;
-        this.tacGia=tacGia;
-        this.namXuatBan=namXuatBan;
-        this.soLuong=soLuong;
-        this.viTri=viTri;
-        this.giaCoBan=giaCoBan;
+        protected String MaSach, TieuDe, TacGia, ViTri;
+        protected int NamXuatBan, SoLuong;   
+        protected double giaCoBan;
+        public Sach(){}
+
+        public Sach(String MaSach, String TieuDe, String TacGia, String ViTri, int NamXuatBan,int Soluong, double giaCoBan) {
+            this.MaSach = MaSach;
+            this.TieuDe = TieuDe;
+            this.TacGia = TacGia;
+            this.ViTri = ViTri;
+            this.NamXuatBan = NamXuatBan;
+            this.SoLuong=Soluong;
+            this.giaCoBan = giaCoBan;
+        }
+        public Sach(String MaSach, String TieuDe, String TacGia)
+        {
+            this.MaSach=MaSach;
+            this.TieuDe=TieuDe;
+            this.TacGia=TacGia;
+        }
+        public Sach(Sach book)
+        {
+            this.MaSach=book.MaSach;
+            this.TieuDe=book.TieuDe;
+        }
+        public String getMaSach() {
+            return MaSach;
+        }
+
+        public void setMaSach(String MaSach) {
+            this.MaSach = MaSach;
+        }
+
+        public String getTieuDe() {
+            return TieuDe;
+        }
+
+        public void setTieuDe(String TieuDe) {
+            this.TieuDe = TieuDe;
+        }
+
+        public String getTacGia() {
+            return TacGia;
+        }
+
+        public void setTacGia(String TacGia) {
+            this.TacGia = TacGia;
+        }
+
+        public String getViTri() {
+            return ViTri;
+        }
+
+        public void setViTri(String ViTri) {
+            this.ViTri = ViTri;
+        }
+
+        public int getNamXuatBan() {
+            return NamXuatBan;
+        }
+
+        public void setNamXuatBan(int NamXuatBan) {
+            this.NamXuatBan = NamXuatBan;
+        }
+
+        public int getSoLuong() {
+            return SoLuong;
+        }
+
+        public void setSoLuong(int SoLuong) {
+            this.SoLuong = SoLuong;
+        }
+
+        public double getGiaCoBan() {
+            return giaCoBan;
+        }
+
+        public void setGiaCoBan(double giaCoBan) {
+            this.giaCoBan = giaCoBan;
+        }       
+        public void hienThiThongTin() 
+        {
+            System.out.println("Ma sach : "+ MaSach);
+            System.out.println("Tieu de : "+ TieuDe);
+            System.out.println("Tac gia : "+ TacGia);
+            System.out.println("Nam xuat ban : "+ NamXuatBan);
+            System.out.println("So luong : "+ SoLuong);
+            System.out.println("Gia co ban : "+ SoLuong);
+            System.out.println("----------------------------");
+        }       
+        @Override
+        public boolean kiemTraTonKho(int soLuongToiThieu){
+            return SoLuong>=soLuongToiThieu;
+        };
+        @Override
+        public void capNhatViTri(String viTriMoi){
+            this.ViTri=viTriMoi;
+            System.out.println("Da chuyen sach "+TieuDe+" den khu vuc:" + viTriMoi+".");
+        };
+        @Override
+        public abstract double tinhGiaBan ();
+        @Override
+        public String toString(){
+            return "Ma sach: " + MaSach + " | Tieu de: " + TieuDe + " | Tacgia: " + TacGia + " | Nam xuat ban: " + NamXuatBan + " | So luong: " + SoLuong +" |giaCoBan: "+giaCoBan+ "|Vi tri: "+ViTri;
+        }
     }
-    public Sach()
-    {
-    }
-    public void setmaSach(String maSach)
-    {
-        this.maSach=maSach;
-    }
-    public void settieuDe(String tieuDe)
-    {
-        this.tieuDe=tieuDe;
-    }
-    public void settacGia(String tacGia)
-    {
-        this.tacGia=tacGia;
-    }
-    public void setnamXuatBan(int namXuatBan)
-    {
-        this.namXuatBan=namXuatBan;
-    }
-    public void setsoLuong(int soLuong)
-    {
-        this.soLuong=soLuong;
-    }
-    public void setviTri(String viTri)
-    {
-        this.viTri=viTri;
-    }
-    public void setgiaCoBan(double giaCoBan)
-    {
-        this.giaCoBan=giaCoBan;
-    }
-    public String getmaSach()
-    {
-        return this.maSach;
-    }
-    public String gettieuDe()
-    {
-        return this.tieuDe;
-    }
-    public String gettacGia()
-    {
-        return this.tacGia;
-    }
-    public int getnamXuatBan()
-    {
-        return this.namXuatBan;
-    }
-    public int getsoLuong()
-    {
-        return this.soLuong;
-    }
-    public String getviTri()
-    {
-        return this.viTri;
-    }
-    public double getgiaCoBan()
-    {
-        return this.giaCoBan;
-    } 
-    public void hienThiThongTin() 
-    {
-        System.out.println("Ma sach: "+ this.maSach);
-        System.out.println("Tieu de: "+ this.tieuDe);
-        System.out.println("Tac gia: "+ this.tacGia);
-        System.out.println("Nam xuat ban: "+ this.namXuatBan);
-        System.out.println("So luong: "+ this.soLuong);
-        System.out.println("Vi tri: "+this.viTri);
-        System.out.println("Gia co ban: "+ this.giaCoBan);
-        System.out.println("Gia ban ra: "+tinhGiaBan());
-        System.out.println("----------------------------");
-    }
-    @Override
-    public String toString() 
-    {
-        return "Ma sach:"+maSach+", Tieu de:"+tieuDe+", Tac gia:"+tacGia+","+" Nam xuat ban:"+namXuatBan+", So luong:"+soLuong+", Khu vuc:"+viTri+", Gia co ban:"+giaCoBan;
-    }
-    @Override
-    public abstract double tinhGiaBan();
-    @Override
-    public boolean kiemTraTonKho(int soLuongToiThieu)
-    {
-        return soLuong >= soLuongToiThieu;
-    }
-    @Override
-    public void capNhatViTri(String viTriMoi)
-    {   
-        this.viTri=viTriMoi;
-        System.out.println("Da chuyen sach '"+tieuDe+"' den khu vuc "+viTriMoi);
-    }
-}

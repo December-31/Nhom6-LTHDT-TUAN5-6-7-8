@@ -1,40 +1,32 @@
-public class SachTieuThuyet extends Sach
-{
-    private String theLoai;
-    private boolean laSachSeries;
-    public SachTieuThuyet(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong,String vitri,double giaCoBan,String theLoai, boolean laSachSeries)
-    {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong,vitri, giaCoBan);
-        this.theLoai = theLoai;
-        this.laSachSeries = laSachSeries;
+package BT;
+public class SachTieuThuyet extends Sach {
+    private String TheLoai;
+    private Boolean LaSachSeries;
+    public SachTieuThuyet (String MaSach, String TieuDe, String TacGia,String ViTri, int NamXuatBan, int SoLuong, double giaCoBan, String TheLoai, Boolean LaSachSeries){
+        super(MaSach, TieuDe, TacGia,ViTri, NamXuatBan, SoLuong, giaCoBan);
+        this.TheLoai=TheLoai;
+        this.LaSachSeries=LaSachSeries;
     }
-    public String getTheLoai() 
-    {
-        return theLoai;
+    public SachTieuThuyet() {
     }
-    public void setTheLoai(String theLoai) 
-    {
-        this.theLoai = theLoai;
+    public String getTheLoai(){
+        return TheLoai;
     }
-    public boolean isLaSachSeries() 
-    {
-        return laSachSeries;
+    public void setTheLoai(String TheLoai){
+        this.TheLoai=TheLoai;
     }
-    public void setLaSachSeries(boolean laSachSeries) 
-    {
-        this.laSachSeries = laSachSeries;
+    public Boolean getLaSachSeries(){
+        return LaSachSeries;
+    }
+    public void setLaSachSeries(Boolean LaSachSeries){
+        this.LaSachSeries=LaSachSeries;
     }
     @Override
-    public double tinhGiaBan()
-    {
-        if (laSachSeries==true)
-            return giaCoBan+15000;
-        else 
-            return giaCoBan;
+    public double tinhGiaBan(){
+        return this.giaCoBan + (LaSachSeries ? 15000:0);
     }
     @Override
-    public String toString() 
-    {
-        return "Sach Tieu Thuyet: "+super.toString()+", The loai: "+theLoai+", La sach series: "+laSachSeries+", Gia ban:"+tinhGiaBan();
+    public String toString(){
+        return "SachTieuThuyet:"+ super.toString()+" | The loai: " + TheLoai + " | La sach series: " + LaSachSeries + " | Gia ban: " + this.tinhGiaBan();
     }
 }

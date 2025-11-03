@@ -1,40 +1,36 @@
+package BT;
 import java.time.Year;
+public class SachGiaoTrinh extends Sach{
+    private String MonHoc;
+    private String CapDo;
+    
+    public SachGiaoTrinh (String MaSach, String TieuDe, String TacGia, String ViTri, int NamXuatBan, int SoLuong,double giaCoBan, String CapDo, String MonHoc){
+        super(MaSach, TieuDe, TacGia, ViTri, NamXuatBan, SoLuong, giaCoBan);
+        this.CapDo=CapDo;
+        this.MonHoc=MonHoc;
+    }
 
-public class SachGiaoTrinh extends Sach
-{
-    private String monHoc;
-    private String capDo;
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong,String viTri,double giaCoBan,String monHoc, String capDo) 
-    {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong, viTri, giaCoBan);
-        this.monHoc = monHoc;
-        this.capDo = capDo;
+    public SachGiaoTrinh() {
     }
-    public String getMonHoc() 
-    {
-        return monHoc;
+    public String getMonHoc(){
+        return MonHoc;
     }
-    public void setMonHoc(String monHoc) 
-    {
-        this.monHoc = monHoc;
+    public void setMonHoc(String MonHoc){
+        this.MonHoc=MonHoc;
     }
-    public String getCapDo() 
-    {
-        return capDo;
+    public String getCapDo(){
+        return CapDo;
     }
-    public void setCapDo(String capDo) 
-    {
-        this.capDo = capDo;
+    public void setCapDo(String CapDo){
+        this.CapDo=CapDo;
     }
     @Override
-    public double tinhGiaBan()
-    {
+    public double tinhGiaBan(){
         int namHienTai = Year.now().getValue();
-        return giaCoBan+(namHienTai-namXuatBan)*5000;
+        return this.giaCoBan+((namHienTai-this.NamXuatBan)*5000);
     }
     @Override
-    public String toString() 
-    {
-        return "Sach giao trinh: "+super.toString()+", Mon hoc:"+monHoc+", Cap do:"+capDo+", Gia ban:"+tinhGiaBan();
+    public String toString(){
+        return "SachGiaoTrinh:"+ super.toString()+ " | Cap do: " + CapDo+ " | Mon hoc: " + MonHoc  + " | Gia ban: " + this.tinhGiaBan();
     }
 }
