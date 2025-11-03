@@ -1,6 +1,6 @@
-public interface IQuanLyKho
-{
-    boolean nhapKho(String maSach, int soLuongNhap);
-    int xuatKho(String maSach, int soLuongXuat);
-    int kiemTraSoLuong(String maSach);
+package BT;
+public interface IQuanLyKho {
+    public void Nhapkho();
+    public void Xuatkho();
+    public void Kiemtrasoluong();
 }

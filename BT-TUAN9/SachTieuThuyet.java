@@ -1,24 +1,32 @@
-public class SachTieuThuyet extends Sach 
-{
-    private String theLoai;
-    private boolean laSachSeries;
-    public SachTieuThuyet(String maSach, String tieuDe, String tacGia, String theLoai, boolean laSachSeries, int namXuatBan, int soLuong, double giaCoBan, String viTri) 
-    {
-        super(maSach, tieuDe, tacGia, namXuatBan, soLuong, giaCoBan, viTri);
-        this.theLoai = theLoai;
-        this.laSachSeries = laSachSeries;
+package BT;
+public class SachTieuThuyet extends Sach {
+    private String TheLoai;
+    private Boolean LaSachSeries;
+    public SachTieuThuyet (String MaSach, String TieuDe, String TacGia,String ViTri, int NamXuatBan, int SoLuong, double giaCoBan, String TheLoai, Boolean LaSachSeries){
+        super(MaSach, TieuDe, TacGia,ViTri, NamXuatBan, SoLuong, giaCoBan);
+        this.TheLoai=TheLoai;
+        this.LaSachSeries=LaSachSeries;
+    }
+    public SachTieuThuyet() {
+    }
+    public String getTheLoai(){
+        return TheLoai;
+    }
+    public void setTheLoai(String TheLoai){
+        this.TheLoai=TheLoai;
+    }
+    public Boolean getLaSachSeries(){
+        return LaSachSeries;
+    }
+    public void setLaSachSeries(Boolean LaSachSeries){
+        this.LaSachSeries=LaSachSeries;
     }
     @Override
-    public double tinhGiaBan()
-    {
-        if(laSachSeries=true)
-            return giaCoBan+15000;
-        else
-            return giaCoBan;
+    public double tinhGiaBan(){
+        return this.giaCoBan + (LaSachSeries ? 15000:0);
     }
     @Override
-    public String toString() 
-    {
-        return super.toString() + "\nThe loai: " + theLoai + "\nSach co thuoc loai series hay khong? " + laSachSeries + "\nGia ban: " + this.tinhGiaBan() + "vnd";
+    public String toString(){
+        return "SachTieuThuyet:"+ super.toString()+" | The loai: " + TheLoai + " | La sach series: " + LaSachSeries + " | Gia ban: " + this.tinhGiaBan();
     }
 }

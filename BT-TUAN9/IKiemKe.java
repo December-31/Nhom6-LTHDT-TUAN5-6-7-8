@@ -1,5 +1,5 @@
-public interface IKiemKe 
-{
+package BT;
+public interface IKiemKe {
     public boolean kiemTraTonKho(int soLuongToiThieu);
     public void capNhatViTri(String viTriMoi);
 }

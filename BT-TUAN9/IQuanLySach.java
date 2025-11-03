@@ -1,9 +1,11 @@
-import java.util.List;
-public interface IQuanLySach 
-{
-    public void themSach(Sach sach); 
-    public boolean capNhatSach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong);
-    public Sach timKiemSach(String maSach);         
-    public boolean xoaSach(String maSach);
-    public List<Sach> hienThiDanhSach();
+package BT;
+import java.util.ArrayList;
+public interface IQuanLySach {
+    ArrayList<Sach> getdanhSach();
+    public void themSach(Sach s);
+    public void xoaSach(String maSach);
+    public Sach timSachTheoMa(String mat);
+    public Boolean capNhatSach(Sach s);
+    public void hienThiTatCa();
 }
+
