@@ -1,153 +1,145 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author ACER
- */
+package BT;
+import java.util.Scanner;
 import java.util.ArrayList;
-public class QuanLySachImpl implements IQuanLySach, IQuanLyKho
-{
-    private final ArrayList<Sach> DS = new ArrayList<>();
-    private int n=0;
-    public QuanLySachImpl(){}
-    
-    public ArrayList<Sach> getDS() 
-    {
-        return DS;
+import java.util.Iterator;
+public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
+    private ArrayList<Sach> danhSach;
+    Scanner sc= new Scanner(System.in);
+    public QuanLySachImpl() {
+        danhSach = new ArrayList<>();
     }
-    
     @Override
-    public Sach TimKiem(String MaSach) 
+    public ArrayList<Sach> getdanhSach() 
     {
-        for (int i=0; i<=n-1; i++) 
-        {
-            if (DS.get(i).getMaSach().equals(MaSach)) 
-                return DS.get(i);
+        return danhSach;
+    }
+    @Override
+    public void themSach(Sach s) {
+        danhSach.add(s);
+    }
+    @Override
+    public void xoaSach(String maSach) {
+        Iterator<Sach> iterator = danhSach.iterator();
+        while (iterator.hasNext()) {
+            Sach s = iterator.next();
+            if (s.getMaSach().equalsIgnoreCase(maSach)) {
+                iterator.remove();
+                System.out.println("Da xoa Sach co Ma "+maSach+" thanh cong");
+            }
+        }
+    }
+    @Override
+    public Sach timSachTheoMa(String mat) {                
+        for (Sach s : danhSach) {
+            if (s.getMaSach().equalsIgnoreCase(mat)) 
+                return s;
         }
         return null;
     }
-    
     @Override
-    public void KQTimKiem(Sach KQ)
-    {
-        if (KQ != null) 
+    public Boolean capNhatSach(Sach s) {
+        System.out.print("Nhap Ma sach : ");
+        String ms=sc.nextLine();
+        if (timSachTheoMa(ms)==null || (s.getMaSach() != null && s.getMaSach().equalsIgnoreCase(ms)))
         {
-            System.out.println("Da tim thay sach");
-            KQ.hienThiThongTin();
-        } 
-        else
-            System.out.println("Khong co trong danh sach"); 
-    }
-    
-    @Override
-    public void ThemSach(Sach sach)
-    {
-        if (TimKiem(sach.MaSach)==null)
-        {
-            DS.add(sach);
-            n++;
-            System.out.println("Da them ma sach: " + sach.MaSach);
-            System.out.println("----------------------------");
-        }
-        else
-            System.out.println("Da co ma sach trong thu vien.");
-    }
-    
-    @Override
-    public void XoaSach(String MaSach)  
-    {
-        Sach sachCanXoa = TimKiem(MaSach);
-        if (sachCanXoa != null) 
-        {
-            DS.remove(sachCanXoa);
-            n--;
-            System.out.println("Da xoa ma sach: " + MaSach);
-        }
-        else
-            System.out.println("Khong tim thay ma sach: " + MaSach);
-        System.out.println("----------------------------");
-    }
-    
-    @Override
-    public void CapNhapSach(String MaSach, String TieuDe, String TacGia, int NamXuatBan, double GiaCoBan, int SoLuong)
-    {
-        Sach sach = TimKiem(MaSach);
-        if (sach!=null)
-        {
-            sach.setTieuDe(TieuDe);
-            sach.setTacGia(TacGia);
-            sach.setNamXuatBan(NamXuatBan);
-            sach.setGiaCoBan(GiaCoBan);
-            sach.setSoLuong(SoLuong);
-        }
-        else
-            System.out.println("Khong tim thay ma sach: " + MaSach);
-    }
-    
-    @Override
-    public boolean NhapKho(String MaSach, int SoLuongNhap)
-    {
-        Sach sach = TimKiem(MaSach);
-        if (sach!=null && SoLuongNhap>=0)
-        {
-            sach.setSoLuong(SoLuongNhap+sach.SoLuong);
-            return true;
-        }
-        return false;
-    }
-    public void KQNhapKho(boolean x)
-    {
-        if (x==true)
-            System.out.println("Nhap thanh cong.");
-        else
-            System.out.println("Loi: Ma sach khong ton tai hoac so luong nhap be hon 0.");
-    }
-    
-    @Override
-    public int XuatKho(String MaSach, int SoLuongXuat)
-    {
-        Sach sach = TimKiem(MaSach);
-        if (sach!=null)
-        {
-            if (SoLuongXuat<=sach.SoLuong)
+            s.setMaSach(ms);
+            System.out.print("Nhap Tieu de : ");
+            String td=sc.nextLine();
+            s.setTieuDe(td);
+            System.out.print("Nhap Tac gia : ");
+            String tg=sc.nextLine();    
+            s.setTacGia(tg);
+            System.out.print("Nhap Vi tri : ");
+            String vt=sc.nextLine();    
+            s.setViTri(vt);
+            System.out.print("Nhap Nam xuat ban : ");
+            int mxb=sc.nextInt();    
+            s.setNamXuatBan(mxb);
+            System.out.print("Nhap So luong : ");
+            int sl=sc.nextInt(); 
+            s.setSoLuong(sl); 
+            System.out.print("Nhap Gia co ban : ");
+            int gcb=sc.nextInt();
+            sc.nextLine();
+            s.setGiaCoBan(gcb); 
+            if ( s instanceof SachGiaoTrinh sgt) {
+                System.out.print("Nhap Cap do : ");
+                String cd=sc.nextLine(); 
+                sgt.setCapDo(cd);
+                System.out.print("Nhap Mon hoc : ");
+                String mh=sc.nextLine(); 
+                sgt.setMonHoc(mh); 
+                return true;
+            }
+            else
             {
-                sach.setSoLuong(sach.SoLuong-SoLuongXuat);
-                return sach.SoLuong;
+                SachTieuThuyet stt=(SachTieuThuyet) s;
+                System.out.print("Nhap The loai : ");
+                String tl=sc.nextLine(); 
+                stt.setTheLoai(tl);
+                System.out.print("Nhap Series(true/false) : ");
+                Boolean sr=sc.nextBoolean();
+                stt.setLaSachSeries(sr);
+                sc.nextLine();
+                return true;
             }
         }
-        return -1;
-    }
-    public void KQXuatKho(int x)
-    {
-        if (x==-1)
-            System.out.println("Loi: Ma sach khong ton tai hoac so luong xuat vuot qua so luong ton.");
         else
-            System.out.println("Xuat thanh cong.");
+        {
+            System.out.println("Ma sach da co.");
+            return false;
+        }       
     }
-    
     @Override
-    public int KiemTraSoLuong(String MaSach)
-    {
-        Sach sach = TimKiem(MaSach);
-        if (sach!=null)
-        {
-            return sach.SoLuong;
-        }
-        else
-            return -1;
-    }
-    
-    @Override  
-    public void HienThiDS() 
-    {
-        System.out.println("Hien thi danh sach:");
-        for (Sach s: DS) 
-        {
+    public void hienThiTatCa() {
+        for (Sach s : danhSach) {
             System.out.println(s.toString());
-            System.out.println("-----------------------------------");
+        }
+    }
+    @Override
+    public void Nhapkho(){
+        System.out.print("Nhap ma sach duoc nhap kho: ");
+        String MaSach=sc.nextLine();
+        if(timSachTheoMa(MaSach)!=null)
+        {
+            Sach s=timSachTheoMa(MaSach);
+            System.out.print("Nhap so luong sach duoc them : ");
+            int sl=sc.nextInt();
+            sc.nextLine();
+            int slc=s.getSoLuong();
+            s.setSoLuong(s.getSoLuong()+sl);
+            System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+        }
+        else 
+            System.out.println("Khong tim thay ma sach!");
+    }
+    @Override
+    public void Xuatkho(){
+        System.out.print("Nhap ma sach duoc xuat kho: ");
+        String MaSach=sc.nextLine();
+        if(timSachTheoMa(MaSach)!=null)
+        {
+            Sach s=timSachTheoMa(MaSach);
+            System.out.print("Nhap so luong sach duoc xuat di : ");
+            int sl=sc.nextInt();
+            sc.nextLine();
+            int slc=s.getSoLuong();
+            int slm=s.getSoLuong()-sl;
+            if(slm<0)
+                System.out.println("Khong du so luong de xuat!");
+            else 
+            {
+                s.setSoLuong(slm);
+                System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+            }
+        }
+        else 
+            System.out.println("Khong tim thay ma sach!");
+    }
+    @Override
+    public void Kiemtrasoluong(){
+        for (Sach s : danhSach) {
+            System.out.println("Ma sach: "+s.getMaSach()+"| So luong: "+s.getSoLuong());
         }
     }
 }

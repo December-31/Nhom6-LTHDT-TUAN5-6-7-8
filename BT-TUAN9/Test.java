@@ -1,300 +1,151 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author ACER
- */
+package BT;
 import java.util.Scanner;
-public class Test 
-{
-    static Scanner sc = new Scanner(System.in);
-    public static void main(String args[]) 
-    {
-        IQuanLySach quanLy = new QuanLySachImpl();
-        QuanLySachImpl ql = (QuanLySachImpl) quanLy;
-        
-        Sach Cuon1 = new SachTieuThuyet("B0001","Dao giau vang","Phieu luu", false, "Robert Louis Stevenson","A",1883,17000,7);
-        quanLy.ThemSach(Cuon1);
-        
-        SachGiaoTrinh Cuon2 = new SachGiaoTrinh("B0002","Giai Tich","Chuyen nganh Toan","Dai hoc","Nguyen Dinh Huy","B", 2015,12000,3);
-        quanLy.ThemSach(Cuon2);
-        
-        SachTieuThuyet Cuon3 = new SachTieuThuyet();
-        Cuon3.setMaSach("B0003");
-        Cuon3.setTieuDe("Hat bui trong mua");
-        Cuon3.setTheLoai("Tinh cam lang man");
-        Cuon3.setLaSachSeries(false);
-        Cuon3.setTacGia("Petrichor");
-        Cuon3.setViTri("A");
-        Cuon3.setNamXuatBan(1773);
-        Cuon3.setGiaCoBan(50000);
-        Cuon3.setSoLuong(2);
-        quanLy.ThemSach(Cuon3);
-        
-        Sach Cuon4 = new SachGiaoTrinh("B0004", "Giai Phau", "Y", "Dai Hoc", "Dai hoc Y Ha Noi","B", 2022, 12000,1);
-        quanLy.ThemSach(Cuon4);
-        
-        Sach Cuon5 = new SachTieuThuyet("B0005", "Harry Potter", "Ky ao", true, "J. K. Rowling","A", 1997, 30000,7);
-        quanLy.ThemSach(Cuon5);
-        
-        quanLy.HienThiDS();
-        
-        int lchon;
-        do
+public class Test {
+    public static void main(String[] args) {
+        IQuanLySach quanly = new QuanLySachImpl();
+        IQuanLyKho QLKho = (IQuanLyKho) quanly;
+        Scanner sc=new Scanner(System.in);
+        SachGiaoTrinh gt1 = new SachGiaoTrinh("GT01", "Lap trinh Java", "Nguyen Van A","t5", 2022, 10, 10000, "Dai hoc", "CNTT");
+        SachGiaoTrinh gt2 = new SachGiaoTrinh("GT02", "Toan cao cap", "Le Thi B","t6", 2021, 5, 14000, "Dai hoc", "Toan hoc");
+        SachTieuThuyet tt1 = new SachTieuThuyet("TT01", "harry potter", "j.r. rowling","t5", 1997, 20, 20500,  "fantasy", true);
+        SachTieuThuyet tt2 = new SachTieuThuyet("TT02", "doraemon", "Fujiko F. Fujio","t7", 1980, 15, 19000, "thieu nhi", true);
+        quanly.themSach(gt1);
+        quanly.themSach(gt2);
+        quanly.themSach(tt1);
+        quanly.themSach(tt2);
+        System.out.println("=== Danh sach ban dau ===");
+        quanly.hienThiTatCa();
+        int a;
+        do{
+        System.out.println("\n---------------MENU-------------------");
+        System.out.println("1. Hien thi tat ca.\n2. Tim sach.    3. Cap nhat Sach.\n4. Xoa sach.    5. Them Sach.\n6. Kiem ke      7. Cap nhap vi tri\n8. Quan ly kho\n0. Thoat.");
+        System.out.print("Nhap tuy chon: ");
+        a=sc.nextInt();
+        sc.nextLine();
+        switch(a)
         {
-            System.out.println("========== MENU ==========");
-            System.out.println("1. Them sach.");
-            System.out.println("2. Xoa sach.");
-            System.out.println("3. Cap nhat sach.");
-            System.out.println("4. Tim kiem sach.");
-            System.out.println("5. Cap nhap vi tri.");
-            System.out.println("6. Kiem ke.");
-            System.out.println("7. Hien thi danh sach.");
-            System.out.println("8. Nhap them so luong sach vao kho.");
-            System.out.println("9. Xuat kho ban sach.");
-            System.out.println("0. Thoat.");
-            System.out.println("==========================");            
-            System.out.print("Nhap lua chon: ");
-            lchon = Integer.parseInt(sc.nextLine());
-            switch (lchon) 
-            {
-                case 1:
-                {
-                    System.out.println("=== CHON LOAI SACH CAN THEM ===");
-                    System.out.println("1. Sach Giao Trinh");
-                    System.out.println("2. Sach Tieu Thuyet");
-                    int lChonSach;
-                    do {
-                        System.out.print("- Lua chon: ");
-                        lChonSach = Integer.parseInt(sc.nextLine());
-                        if (lChonSach == 1)
-                            System.out.println("\n=== NHAP THONG TIN SACH GIAO TRINH ===");
-                        else if (lChonSach == 2)
-                            System.out.println("\n=== NHAP THONG TIN SACH TIEU THUYET ===");
+            case 1:
+                    quanly.hienThiTatCa();
+                    break;
+            case 2:    
+                System.out.print("Nhap ma sach can tim: "); 
+                String matim=sc.nextLine();               
+                if (quanly.timSachTheoMa(matim)!=null){
+                    System.out.println("Da tim thay Sach:");
+                    System.out.print(quanly.timSachTheoMa(matim));
+                }
+                else
+                    System.out.println("Khong tim thay Sach.");
+                break;
+            case 3:
+                System.out.print("Nhap ma sach can cap nhat: "); 
+                String mascn=sc.nextLine();
+                if (quanly.timSachTheoMa(mascn)!= null){
+                    Sach s=quanly.timSachTheoMa(mascn);
+                    System.out.println("Cap nhat lai thong tin cua Sach :");
+                    if(quanly.capNhatSach(s)==false)
+                        System.out.println("Cap nhat sach that bai!");
+                    else
+                    {
+                        System.out.println("=== Danh sach sau khi cap nhat ===");
+                        quanly.hienThiTatCa();
+                    }
+                }
+                else 
+                    System.out.println("Nhap Ma sach sai!");                   
+                break;
+            case 4:
+                System.out.print("Nhap ma sach can xoa: ");
+                String max=sc.nextLine();
+                if(quanly.timSachTheoMa(max)==null)
+                    System.out.print("Nhap sai ma sach ");
+                else{
+                quanly.xoaSach(max);
+                System.out.println("=== Danh sach sau khi xoa ===");
+                quanly.hienThiTatCa();
+                }
+                break;
+            case 5:
+                System.out.print("1.Sach giao trinh     2. Sach tieu thuyet. \nNhap loai sach can them : ");
+                int st=sc.nextInt();
+                sc.nextLine();
+                switch(st){
+                    case 1:
+                        System.out.println("Nhap cac thong tin cua Sach giao trinh moi:");
+                        SachGiaoTrinh sgt=new SachGiaoTrinh();
+                        if(quanly.capNhatSach(sgt)==false)
+                             System.out.println("Them sach that bai!");                       
                         else
-                            System.out.println("Lua chon khong hop le! Khong the them sach.");
-                    } while (lChonSach != 1 && lChonSach != 2);
-                    
-                    String MaSach;
-                    do{
-                    System.out.print("Nhap ma sach: ");
-                    MaSach = sc.nextLine();
-
-                    if (quanLy.TimKiem(MaSach) != null)
-                        System.out.println("Da ton tai ma sach " + MaSach);
-                    }while(quanLy.TimKiem(MaSach) != null);
-
-                    System.out.print("Tieu de: ");
-                    String TieuDe = sc.nextLine();
-
-                    System.out.print("Tac gia: ");
-                    String TacGia = sc.nextLine();
-
-                    System.out.print("Nam xuat ban: ");
-                    int NamXuatBan = sc.nextInt();
-                    sc.nextLine();
-
-                    System.out.print("So luong: ");
-                    int SoLuong = sc.nextInt();
-                    sc.nextLine();
-
-                    System.out.print("Vi tri: ");
-                    String ViTri = sc.nextLine();
-
-                    System.out.print("Gia co ban: ");
-                    double GiaCoBan = sc.nextDouble();
-                    sc.nextLine();
-
-                    switch (lChonSach) 
-                    {
-                        case 1: {
-                            System.out.print("Mon hoc: ");
-                            String MonHoc = sc.nextLine();
-                            System.out.print("Cap do: ");
-                            String CapDo = sc.nextLine();
-                            quanLy.ThemSach(new SachGiaoTrinh(MaSach, TieuDe, MonHoc, CapDo, TacGia, ViTri, NamXuatBan, GiaCoBan, SoLuong));
-                            SachGiaoTrinh sach = (SachGiaoTrinh) quanLy.TimKiem(MaSach);
-                            sach.hienThiThongTin();
-                            break;
-                        }
-                        case 2: {
-                            System.out.print("The loai: ");
-                            String TheLoai = sc.nextLine();
-                            System.out.print("Co phai sach series?: ");
-                            boolean LaSachSeries = sc.nextBoolean();
-                            sc.nextLine();
-                            quanLy.ThemSach(new SachTieuThuyet(MaSach, TieuDe, TheLoai, LaSachSeries, TacGia, ViTri, NamXuatBan, GiaCoBan, SoLuong));
-                            SachTieuThuyet sach = (SachTieuThuyet) quanLy.TimKiem(MaSach);
-                            sach.hienThiThongTin();
-                            break;
-                        }
-                    }
-                    quanLy.HienThiDS();
-                    break;
-                }
-                case 2:
-                    System.out.print("Nhap ma sach can xoa: ");
-                    String maSachXoa = sc.nextLine();
-                    quanLy.XoaSach(maSachXoa);
-                    quanLy.HienThiDS();
-                    break;
-                case 3:
-                {
-                    System.out.print("Nhap ma sach can cap nhap: ");
-                    String MaSach = sc.nextLine();
-                    if (quanLy.TimKiem(MaSach) != null)
-                    {
-                        System.out.print("Tieu de: ");
-                        String TieuDe = sc.nextLine();
-
-                        System.out.print("Tac gia: ");
-                        String TacGia = sc.nextLine();
-
-                        System.out.print("Nam xuat ban: ");
-                        int NamXuatBan = sc.nextInt();
-                        sc.nextLine();
-
-                        System.out.print("Gia co ban: ");
-                        double GiaCoBan = sc.nextDouble();
-                        sc.nextLine();
-
-                        System.out.print("So luong: ");
-                        int SoLuong = sc.nextInt();
-                        sc.nextLine();
-
-                        quanLy.CapNhapSach(MaSach, TieuDe, TacGia, NamXuatBan, GiaCoBan, SoLuong);
-                        
-                        if (quanLy.TimKiem(MaSach) instanceof SachGiaoTrinh)
                         {
-                            System.out.print("Mon hoc: ");
-                            String MonHoc = sc.nextLine();
-                            System.out.print("Cap do: ");
-                            String CapDo = sc.nextLine();
-                            SachGiaoTrinh BoSung = (SachGiaoTrinh) quanLy.TimKiem(MaSach);
-                            BoSung.setMonHoc(MonHoc);
-                            BoSung.setCapDo(CapDo);
-                            BoSung.hienThiThongTin();
+                            quanly.themSach(sgt);
+                            System.out.println("=== Danh sach sau khi them === ");
+                            quanly.hienThiTatCa();
                         }
-                        if (quanLy.TimKiem(MaSach) instanceof SachTieuThuyet)
+                        break;
+                    case 2:
+                        System.out.println("Nhap cac thong tin cua Sach tieu thuyet moi:");
+                        SachTieuThuyet stt=new SachTieuThuyet();
+                        if(quanly.capNhatSach(stt)==false)
+                             System.out.println("Them sach that bai!");                       
+                        else
                         {
-                            System.out.print("The loai: ");
-                            String TheLoai = sc.nextLine();
-                            System.out.print("Co phai sach series?: ");
-                            boolean LaSachSeries = sc.nextBoolean();
-                            sc.nextLine();
-                            SachTieuThuyet BoSung = (SachTieuThuyet) quanLy.TimKiem(MaSach);
-                            BoSung.setTheLoai(TheLoai);
-                            BoSung.setLaSachSeries(LaSachSeries);
-                            BoSung.hienThiThongTin();
-                        }
-                    }
-                    else
-                        System.out.println("Khong tim thay ma sach: " + MaSach);
-                    break;
-                }
-                case 4:
+                            quanly.themSach(stt);
+                            System.out.println("=== Danh sach sau khi them === ");
+                            quanly.hienThiTatCa();
+                        };
+                        break;
+                    default:
+                        System.out.println("Lua chon khong hop le!");
+                }       
+                break;
+            case 6:
                 {
-                    System.out.print("Nhap ma sach can tim: ");
-                    String STimKiem = sc.nextLine();
-
-                    Sach x = quanLy.TimKiem(STimKiem);
-                    quanLy.KQTimKiem(x);
-                }
-                    break;
-
-                case 5:
-                {
-                    System.out.print("Nhap ma sach can cap nhap vi tri: ");
-                    String MaSach = sc.nextLine();
-                    if (quanLy.TimKiem(MaSach)!=null)
-                    {
-                        System.out.print("Nhap vi tri moi: ");
-                        String ViTri = sc.nextLine();
-                        quanLy.TimKiem(MaSach).capNhatViTri(ViTri);
-                        ql.TimKiem(MaSach).hienThiThongTin();
-                    }
-                    else
-                        System.out.println("Khong tim thay ma sach: " + MaSach);
-                }
-                
-                    break;
-
-                case 6:
-                {
-                    System.out.print("Nhao vao so luong toi thieu: ");
+                    System.out.print("Nhap vao so luong toi thieu:");
                     int soLuongToiThieu = sc.nextInt();
-                    sc.nextLine();
-                    for (Sach s : ql.getDS())
+                    for (Sach s : quanly.getdanhSach())
                     {
                         if (s.kiemTraTonKho(soLuongToiThieu))
-                            System.out.println("Sach voi ma " + s.getMaSach() + " con ton kho.");
+                            System.out.println("Sach voi ma " + s.getMaSach() + " con ton kho");
                         else
-                            System.out.println("Sach voi ma " + s.getMaSach() + " khong con ton kho.");
+                            System.out.println("Sach voi ma " + s.getMaSach() + " khong con ton kho");
                     }
                 }
-                    break;
-
+                break;
                 case 7:
-                {
-                    quanLy.HienThiDS();
-                }
-                    break;
-                    
+                    System.out.print("Nhap vao ma sach can chuyen vi tri:");
+                    String maSach=sc.nextLine();
+                    if (quanly.timSachTheoMa(maSach)==null)
+                    {
+                        System.out.println("Khong tim thay sach voi ma "+maSach+" de chuyen vi tri");
+                    }
+                    else
+                    {
+                        System.out.print("Nhap vao vi tri can chuyen sach:");
+                        String viTriM=sc.nextLine();
+                        Sach s = quanly.timSachTheoMa(maSach);
+                        s.capNhatViTri(viTriM);
+                    }
+                    break;  
                 case 8:
-                {
-                    System.out.print("Nhap ma sach can nhap them hang: ");
-                    String MaSach=sc.nextLine();
-                    int KQKT=ql.KiemTraSoLuong(MaSach);
-                    if (KQKT==-1)
-                    {
-                        System.out.println("Khong tim thay ma sach.");
-                        break;
+                    System.out.print("1. Nhap kho     2. xuat kho     3. Kiem tra so luong \nNhap tuy chon: ");
+                    int b=sc.nextInt();
+                    switch (b) {
+                        case 1:
+                            QLKho.Nhapkho();
+                            break;
+                        case 2:
+                            QLKho.Xuatkho();
+                            break;
+                        case 3:
+                            QLKho.Kiemtrasoluong();
+                            break;
+                        default:
+                            System.out.println("Tuy chon khong hop le!");
                     }
-                    else
-                        System.out.println("So luong hien tai: "+KQKT);
-                    System.out.print("Nhap so luong can them: ");
-                    int Num = sc.nextInt();
-                    sc.nextLine();
-                    boolean KQ = ql.NhapKho(MaSach, Num);
-                    KQKT=ql.KiemTraSoLuong(MaSach);
-                    ql.KQNhapKho(KQ);
-                    System.out.println("So luong hien tai: "+KQKT);
-                }
                     break;
-                    
-                case 9:
-                {
-                    System.out.print("Nhap ma sach can xuat hang: ");
-                    String MaSach=sc.nextLine();
-                    int KQKT=ql.KiemTraSoLuong(MaSach);
-                    if (KQKT==-1)
-                    {
-                        System.out.println("Khong tim thay ma sach.");
-                        break;
-                    }
-                    else
-                        System.out.println("So luong hien tai: "+KQKT);
-                    System.out.print("Nhap so luong can xuat: ");
-                    int Num = sc.nextInt();
-                    sc.nextLine();
-                    int KQ = ql.XuatKho(MaSach, Num);
-                    KQKT=ql.KiemTraSoLuong(MaSach);
-                    ql.KQXuatKho(KQ);
-                    System.out.println("So luong hien tai: "+KQKT);
-                }
-                    break;
-
-                case 0:
-                    System.out.println("Ket thuc...");
-                    break;
-
-                default:
-                    System.out.println("Lua chon khong hop le. Vui long nhap lai!");
-            }
-        }while(lchon!=0);     
+            default:
+                System.out.println("Tuy chon khong hop le!");
+        }
+        }while(a!=0);
     }
 }
-
