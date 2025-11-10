@@ -27,6 +27,12 @@ public class SachTieuThuyet extends Sach {
     }
     @Override
     public String toString(){
-        return "SachTieuThuyet:"+ super.toString()+" | The loai: " + TheLoai + " | La sach series: " + LaSachSeries + " | Gia ban: " + this.tinhGiaBan();
+        return String.format(
+        "%s" + " | %-35s" +                     
+        "\n%-35s | %-35s",                     
+        super.toString(),         
+        "The loai: " + this.getTheLoai(),  "La sach series: " + this.getLaSachSeries(),
+        "Gia ban: " + this.tinhGiaBan()
+    );
     }
 }

@@ -99,9 +99,23 @@ public class Test {
                 }       
                 break;
             case 6:
-                {
-                    System.out.print("Nhap vao so luong toi thieu:");
-                    int soLuongToiThieu = sc.nextInt();
+                {                                      
+                    int soLuongToiThieu;
+                    while(true)
+                    {  
+                        try{                    
+                            System.out.print("Nhap vao so luong toi thieu:");
+                            soLuongToiThieu = Integer.parseInt(sc.nextLine());                  
+                            if (soLuongToiThieu < 0) 
+                                    System.out.println("So luong toi thieu phai lon hon hoac bang 0. \nNhap lai du lieu. ");
+                            else{                            
+                                break;
+                            }
+                        }catch (java.util.InputMismatchException e) {
+                            System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. ");
+                            sc.nextLine();
+                        }
+                    }
                     for (Sach s : quanly.getdanhSach())
                     {
                         if (s.kiemTraTonKho(soLuongToiThieu))

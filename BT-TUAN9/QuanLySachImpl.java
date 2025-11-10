@@ -2,7 +2,8 @@ package BT;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
-public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
+import java.time.Year;
+public class QuanLySachImpl implements IQuanLySach, IQuanLyKho, IReadWrite{
     private ArrayList<Sach> danhSach;
     Scanner sc= new Scanner(System.in);
     public QuanLySachImpl() {
@@ -38,6 +39,7 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
     }
     @Override
     public Boolean capNhatSach(Sach s) {
+        int namHienTai = Year.now().getValue();
         System.out.print("Nhap Ma sach : ");
         String ms=sc.nextLine();
         if (timSachTheoMa(ms)==null || (s.getMaSach() != null && s.getMaSach().equalsIgnoreCase(ms)))
@@ -52,16 +54,54 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
             System.out.print("Nhap Vi tri : ");
             String vt=sc.nextLine();    
             s.setViTri(vt);
-            System.out.print("Nhap Nam xuat ban : ");
-            int mxb=sc.nextInt();    
-            s.setNamXuatBan(mxb);
-            System.out.print("Nhap So luong : ");
-            int sl=sc.nextInt(); 
-            s.setSoLuong(sl); 
-            System.out.print("Nhap Gia co ban : ");
-            int gcb=sc.nextInt();
-            sc.nextLine();
-            s.setGiaCoBan(gcb); 
+            while(true)
+            {  
+                try{                                        
+                    System.out.print("Nhap Nam xuat ban : ");
+                    int nxb=Integer.parseInt(sc.nextLine());                    
+                    if (nxb > namHienTai) 
+                            System.out.println("Nam xuat ban phai nho hon hoac bang nam hien tai. \nNhap lai du lieu. ");
+                    else 
+                        if(nxb<0)
+                            System.out.println("Nam xuat ban phai lon hon bang 0. \nNhap lai du lieu. ");
+                        else{
+                            s.setNamXuatBan(nxb);
+                            break;
+                    }
+                }catch (NumberFormatException e) {
+                    System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. ");
+                }
+            }  
+            while(true)
+            {  
+                try{                    
+                    System.out.print("Nhap So luong : ");
+                    int sl=Integer.parseInt(sc.nextLine());                    
+                    if (sl < 0) 
+                            System.out.println("So luong phai lon hon hoac bang 0. \nNhap lai du lieu. ");
+                    else{
+                        s.setSoLuong(sl); 
+                        break;
+                    }
+                }catch (NumberFormatException e) {
+                    System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. ");
+                }
+            }         
+            while(true)
+            {  
+                try{                    
+                    System.out.print("Nhap Gia co ban : ");
+                    int gcb=Integer.parseInt(sc.nextLine());                
+                    if (gcb < 0) 
+                            System.out.println("Gia ban phai lon hon hoac bang 0. \nNhap lai du lieu. ");
+                    else{
+                        s.setGiaCoBan(gcb); 
+                        break;
+                    }
+                }catch (NumberFormatException e) {
+                    System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. ");
+                }
+            }                                                           
             if ( s instanceof SachGiaoTrinh sgt) {
                 System.out.print("Nhap Cap do : ");
                 String cd=sc.nextLine(); 
@@ -76,11 +116,20 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
                 SachTieuThuyet stt=(SachTieuThuyet) s;
                 System.out.print("Nhap The loai : ");
                 String tl=sc.nextLine(); 
-                stt.setTheLoai(tl);
-                System.out.print("Nhap Series(true/false) : ");
-                Boolean sr=sc.nextBoolean();
-                stt.setLaSachSeries(sr);
-                sc.nextLine();
+                stt.setTheLoai(tl);                
+                while(true)
+                {  
+                    try{                    
+                        System.out.print("Nhap Series(true/false) : ");
+                        Boolean sr=sc.nextBoolean(); 
+                        sc.nextLine();
+                        stt.setLaSachSeries(sr);
+                        break;
+                    }catch (java.util.InputMismatchException e) {
+                        System.out.println("Du lieu nhap vao khong dung kieu du lieu (Boolean). \nNhap lai du lieu. ");
+                        sc.nextLine();
+                    }
+                }             
                 return true;
             }
         }
@@ -88,12 +137,13 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
         {
             System.out.println("Ma sach da co.");
             return false;
-        }       
+        } 
     }
     @Override
     public void hienThiTatCa() {
         for (Sach s : danhSach) {
             System.out.println(s.toString());
+            System.out.println("---------------------------------------------------");
         }
     }
     @Override
@@ -103,12 +153,22 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
         if(timSachTheoMa(MaSach)!=null)
         {
             Sach s=timSachTheoMa(MaSach);
-            System.out.print("Nhap so luong sach duoc them : ");
-            int sl=sc.nextInt();
-            sc.nextLine();
-            int slc=s.getSoLuong();
-            s.setSoLuong(s.getSoLuong()+sl);
-            System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+            try{
+                int slc=s.getSoLuong();
+                while(true){
+                    System.out.print("Nhap so luong sach duoc them ( Sach hien co "+slc+" cuon ) : ");
+                    int sl=Integer.parseInt(sc.nextLine());
+                    if (sl>=0){                    
+                        s.setSoLuong(slc+sl);
+                        System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+                        break;
+                    }
+                    else
+                        System.out.println("So luong nhap vao phai lon hon hoac bang 0.");
+                }
+            }catch (NumberFormatException e){
+                    System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. ");
+                }           
         }
         else 
             System.out.println("Khong tim thay ma sach!");
@@ -117,21 +177,35 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
     public void Xuatkho(){
         System.out.print("Nhap ma sach duoc xuat kho: ");
         String MaSach=sc.nextLine();
-        if(timSachTheoMa(MaSach)!=null)
-        {
-            Sach s=timSachTheoMa(MaSach);
-            System.out.print("Nhap so luong sach duoc xuat di : ");
-            int sl=sc.nextInt();
-            sc.nextLine();
+        Sach s=timSachTheoMa(MaSach);
+        if(s!=null)
+        {            
             int slc=s.getSoLuong();
-            int slm=s.getSoLuong()-sl;
-            if(slm<0)
-                System.out.println("Khong du so luong de xuat!");
-            else 
-            {
-                s.setSoLuong(slm);
-                System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+            if (slc == 0) {
+            System.out.println("Sach co Ma '" + s.getMaSach() + "' da het (so luong = 0)!");
+            return; 
             }
+            while (true){
+            try{
+            System.out.print("Nhap so luong sach duoc xuat di( Sach hien co "+slc+" cuon ) : ");
+            int sl=Integer.parseInt(sc.nextLine());
+            int slm=slc-sl;
+            if(sl<0)
+                    System.out.println("So luong sach duoc xuat di phai lon hon hoac bang 0.");
+            else
+                if(slm<0)
+                    System.out.println("Khong du so luong de xuat!");
+                else 
+                {
+                    s.setSoLuong(slm);
+                    System.out.println("So luong sach ma "+MaSach+" co so luong tu "+slc+" thanh "+s.getSoLuong());
+                    break;
+                }            
+            }catch (NumberFormatException e){
+                    System.out.println("Du lieu nhap vao khong dung kieu du lieu (int). \nNhap lai du lieu. "); 
+                }
+            }
+            
         }
         else 
             System.out.println("Khong tim thay ma sach!");
@@ -140,6 +214,11 @@ public class QuanLySachImpl implements IQuanLySach, IQuanLyKho{
     public void Kiemtrasoluong(){
         for (Sach s : danhSach) {
             System.out.println("Ma sach: "+s.getMaSach()+"| So luong: "+s.getSoLuong());
+            System.out.println("---------------------------------------------");
         }
     }
+    @Override
+    public void ReadData(){}
+    @Override
+    public void WriteData(){}
 }

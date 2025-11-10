@@ -88,7 +88,7 @@ public abstract class Sach implements IGiaBan, IKiemKe
             System.out.println("Tac gia : "+ TacGia);
             System.out.println("Nam xuat ban : "+ NamXuatBan);
             System.out.println("So luong : "+ SoLuong);
-            System.out.println("Gia co ban : "+ SoLuong);
+            System.out.println("Gia co ban : "+ giaCoBan);
             System.out.println("----------------------------");
         }       
         @Override
@@ -104,6 +104,16 @@ public abstract class Sach implements IGiaBan, IKiemKe
         public abstract double tinhGiaBan ();
         @Override
         public String toString(){
-            return "Ma sach: " + MaSach + " | Tieu de: " + TieuDe + " | Tacgia: " + TacGia + " | Nam xuat ban: " + NamXuatBan + " | So luong: " + SoLuong +" |giaCoBan: "+giaCoBan+ "|Vi tri: "+ViTri;
+            return String.format(
+        "%-35s | %-35s \n" +   
+        "%-35s | %-35s \n" +  
+        "%-35s | %-35s \n" +  
+        "%-35s",                
+        
+        "Ma sach: " + this.MaSach,      "Tieu de: " + this.TieuDe,          
+        "Tacgia: " + this.TacGia,       "Nam xuat ban: " + this.NamXuatBan,  
+        "So luong: " + this.SoLuong,    "giaCoBan: " + this.giaCoBan,      
+        "Vi tri: " + this.ViTri                                           
+    );
         }
     }

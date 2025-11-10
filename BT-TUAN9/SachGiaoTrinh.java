@@ -31,6 +31,10 @@ public class SachGiaoTrinh extends Sach{
     }
     @Override
     public String toString(){
-        return "SachGiaoTrinh:"+ super.toString()+ " | Cap do: " + CapDo+ " | Mon hoc: " + MonHoc  + " | Gia ban: " + this.tinhGiaBan();
+        return String.format(
+        "%s" + " | %-35s"+                     
+        "\n%-35s | %-35s",                             
+        super.toString(),"Cap do: " + this.getCapDo(),"Mon hoc: " + this.getMonHoc() , "Gia ban: " + this.tinhGiaBan()
+        );
     }
 }
